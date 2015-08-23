@@ -1,0 +1,20 @@
+Package: prepr
+Type: Package
+Title: Functions to Prepare Data for Analysis
+Version: 0.0.0.9000
+Date: 2015-08-11
+Description: Functions for preparing data for analysis including  removing white space,
+    capitalizing, cleaning and parsing names fields, and caping and flooring variables
+Authors@R: person("Matthew", "Kelliher-Gibson", email = "mkg@mattkellihergibson.com",
+		role = c("aut", "cre"))
+Depends:
+    data.table
+Imports:
+    stringi,
+    stringr,
+    dplyr,
+    tidyr,
+    magrittr
+Suggests:
+License: GPL-3
+LazyData: TRUE
