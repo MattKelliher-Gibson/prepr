@@ -13,7 +13,7 @@ StripWhite <- function(data) {
 }
 
 #' @export
-#' @describeIn StripWhite
+#' @describeIn StripWhite default
 
 StripWhite.default <- function(data) {
   if (is.character(data)){
@@ -24,7 +24,7 @@ StripWhite.default <- function(data) {
 }
 
 #' @export
-#' @describeIn StripWhite
+#' @describeIn StripWhite data.frame
 
 StripWhite.data.frame <- function(data) {
 	for (i in 1:length(names(data))) {

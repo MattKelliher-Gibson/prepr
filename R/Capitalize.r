@@ -43,7 +43,7 @@ Capitalize.data.frame <- function(data){
   data
 }
 
-#'@describeIn Capitalize Character and Unsupported Classes
+#' @describeIn Capitalize Character and Unsupported Classes
 #' @export
 Capitalize.default <- function(data){
   if (is.character(data)){
