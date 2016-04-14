@@ -11,3 +11,9 @@
 ReadSQL <- function(file) {
 	paste(readLines(file), collapse = "\n")
 }
+
+#' @export
+
+file_location <- function(f.file){
+	paste0(getwd(), f.file)
+}
