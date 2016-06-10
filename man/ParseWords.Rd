@@ -4,16 +4,17 @@
 \alias{ParseWords}
 \title{Parse a character column into several columns}
 \usage{
-ParseWords(data, total.words = 5, name_field = NULL, var.name = "word")
+ParseWords(data, total_words = 5, name_field = NULL, var.name = "word")
 }
 \description{
 \code{ParseWords} separates one character column (usually names)
  into several columns with sequential names.
- Originally designed for Parsing Name Fields
+ Originally designed for Parsing Name Fields.
 }
 \details{
 @param data a data.frame or data.table or tbl
- @param total.words numerical, total new columns
+ @param total_words numerical, total new columns
+ @param name_field bare name of column with names
  @param var.name character, new columns name prefix
  @return data.frame/data.table/tbl of the same class
  @export

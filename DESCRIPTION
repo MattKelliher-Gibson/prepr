@@ -5,7 +5,7 @@ Version: 0.0.0.9000
 Date: 2015-08-23
 Description: Functions for preparing data for analysis including removing white
     space, capitalizing, cleaning and parsing names fields, and caping and flooring
-    variables
+    variables.
 Authors@R: person("Matthew", "Kelliher-Gibson", email = "mkg@mattkellihergibson.com",
 		role = c("aut", "cre"))
 Depends:
