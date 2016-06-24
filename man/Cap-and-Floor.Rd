@@ -14,7 +14,7 @@ These function are for manipulating a data.frame for modeling
    \item \bold{var} {the name of the variable to be capped}
    \item \bold{cap} {a number that is will be the max for the column}
 }
-\bold{Returns} an object of the same class as \code(data)
+\bold{Returns} an object of the same class as \code{data}
 }
 
 \section{Floor}{
@@ -25,7 +25,7 @@ These function are for manipulating a data.frame for modeling
    \item \bold{var} {the name of the variable to be floored}
    \item \bold{floor} {a number that is will be the min for the column}
 }
-\bold{Returns} an object of the same class as \code(data)
+\bold{Returns} an object of the same class as \code{data}
 }
 
 \section{Max}{

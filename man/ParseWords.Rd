@@ -4,7 +4,7 @@
 \alias{ParseWords}
 \title{Parse a character column into several columns}
 \usage{
-ParseWords(data, total_words = 5, name_field = NULL, var.name = "word")
+ParseWords(data, total_words = 5, name_field = NULL, var_name = "word")
 }
 \description{
 \code{ParseWords} separates one character column (usually names)
