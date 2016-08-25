@@ -28,7 +28,7 @@ capitalize.data.table <- function(data) {
   }
 
   data2 <- dplyr::mutate_if(data, is.character, toupper)
-  data2
+  return(data2)
 }
 
 #' @export

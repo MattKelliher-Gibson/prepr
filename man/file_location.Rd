@@ -10,7 +10,7 @@ file_location(f.file)
 \item{f.file}{character string of folders and file name}
 }
 \description{
-\code{file_location} create a character string using the current working directory
+\code{file_location} creates a character string using the current working directory
  and provided file location.
 }
 \note{

@@ -12,6 +12,10 @@
 #' @name excel_functions
 #' @export
 right <- function(vec1, chars){
+  if(!is.character(vec1)){
+    stop("Not a Character Vector")
+  }
+
 	chars1 <- chars*-1
 	stringr::str_sub(vec1, start = chars1)
 }
@@ -19,6 +23,9 @@ right <- function(vec1, chars){
 #' @rdname excel_functions
 #' @export
 left <- function(vec1, chars){
+  if(!is.character(vec1)){
+    stop("Not a Character Vector")
+  }
   stringr::str_sub(vec1, start = 1, end = chars)
 }
 
