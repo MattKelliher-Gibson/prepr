@@ -12,6 +12,14 @@ ReadSQL <- function(file) {
 	paste(readLines(file), collapse = "\n")
 }
 
+
+#' file_location
+#' @description \code{file_location} creates a character string using the current working directory
+#'  and provided file location.
+#'
+#' @param f.file character string of folders and file name
+#'
+#' @note \code{f.file} must begin with a '\' and cannot use '/'
 #' @export
 
 file_location <- function(f.file){

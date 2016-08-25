@@ -3,20 +3,26 @@
 #' \code{right} and \code{left} act like Right and Left excel functions
 #' \code{ifna} replaces NAs with the provided value
 #'
-#' @param vec1 a charater vector
-#' @param chars number of characters to substrate
+#' @param vec1 Charater vector
+#' @param chars Number of characters to substrate
 #'
+#' @param var1 Vector to check if \code{NA}
+#' @param var2 Value to replace \code{NA}
+#'
+#' @name excel_functions
 #' @export
 right <- function(vec1, chars){
 	chars1 <- chars*-1
 	stringr::str_sub(vec1, start = chars1)
 }
 
+#' @rdname excel_functions
 #' @export
 left <- function(vec1, chars){
   stringr::str_sub(vec1, start = 1, end = chars)
 }
 
+#' @rdname excel_functions
 #' @export
 ifna <- function(var1, var2){
 	if(class(var1)[1] %like% "POSIX."){
@@ -29,5 +35,5 @@ ifna <- function(var1, var2){
 		class(to_return) <- k.class
 	}
 
-	return(to_return)
+	to_return
 }

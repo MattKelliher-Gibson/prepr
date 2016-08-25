@@ -11,9 +11,9 @@
 #' @export
 
 FixName <- function(.data, .name_field) {
-  StripWhite(.data)
+  strip_white(.data)
 
-  Capitalize(.data)
+  capitalize(.data)
 
   .data[, Final_Name := CleanName(get(.name_field))]
 

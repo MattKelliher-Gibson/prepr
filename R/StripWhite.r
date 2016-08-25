@@ -1,48 +1,38 @@
 #' Strips all White Space from character string
 #'
-#' \code{StripWhite} removes all extra spaces from before and after a character string
+#' \code{strip_white} removes all extra spaces from before and after a character string
 #'
-#' @param data a data.frame/data.table/character vector
-#' @return same class as imput: data.frame/data.table/character vector
+#' @inheritParams  capitalize
+#' @return Object of input class
 #' @export
 
 #A. Generic
 
-StripWhite <- function(data) {
-  UseMethod("StripWhite")
+strip_white <- function(data) {
+  UseMethod("strip_white")
 }
 
 #' @export
-#' @describeIn StripWhite default
-
-StripWhite.default <- function(data) {
+strip_white.default <- function(data) {
   if (is.character(data)){
     stringr::str_trim(data)
   } else {
-    stop(paste(quote(data), "is not a character vector. Class:", class(data)))
+    stop(paste(quote(data), "is unsupported class:", class(data)))
   }
 }
 
 #' @export
-#' @describeIn StripWhite data.frame
-
-StripWhite.data.frame <- function(data) {
-	for (i in 1:length(names(data))) {
-		if (class(data[[i]]) == "character") {
-			data[[i]] <- stringr::str_trim(data[[i]])
-		}
-	}
-
-	data
+strip_white.data.frame <- function(data) {
+  data2 <- mutate_if(data, is.character, stringr::str_trim)
+	data2
 }
 
 #' @export
-#' @describeIn StripWhite Returned Invisibly
-
-StripWhite.data.table <- function(data) {
-  out <- names(data)[vapply(data, is.character, logical(1))]
-
-  for (i in out){
-    data[, invisible((i) := stringr::str_trim(get(i)))]
+strip_white.data.table <- function(data) {
+  if(!R.utils::isPackageLoaded("dtplyr")){
+    stop("Please Load dtplyr for data.table")
   }
+
+  data2 <- mutate_if(data, is.character, stringr::str_trim)
+	data2
 }

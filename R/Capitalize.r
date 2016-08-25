@@ -1,51 +1,46 @@
 #' Capitalizes all Character Strings
 #'
-#' \code{Capitalize} is a generic function that capitalizes
-#'  all letters in an object.
+#' Capitalizes all letters in an object.
 #'
+#' @section Methods:
 #' Current classes supported:
 #' \itemize{
 #'  \item \code{data.frame}
 #'  \item \code{data.table}
-#'  \item \code{character} vector
+#'  \item \code{character vector}
 #' }
 #'
-#' @param data a data.frame/data.table/character vector
+#' @param data \code{data.frame} containing character columns or \code{character vector}
 #'
-#' @return same class as was used for input
+#' @return Object of input class
 #'
 
 #' @export
-Capitalize <- function(data) {
-  UseMethod("Capitalize")
+capitalize <- function(data) {
+  UseMethod("capitalize")
 }
 
-#' @describeIn Capitalize Uses data.frame method (must be assigned)
 #' @export
-Capitalize.data.table <- function(data) {
-  out <- vapply(data, is.character, logical(1))
-  .cols <- names(data)[out]
-
-  for (i in .cols){
-    data[, invisible((i) := toupper(get(i)))]
-  }
-}
-
-#' @describeIn Capitalize \code{data.frame} must be assigned
-#' @export
-Capitalize.data.frame <- function(data){
-  out <- vapply(data, is.character, logical(1))
-
-  for(i in names(data)[out]){
-    data[[i]] <- toupper(data[[i]])
+#' @describeIn capitalize data.table
+capitalize.data.table <- function(data) {
+  if(!R.utils::isPackageLoaded("dtplyr")){
+    stop("Please Load dtplyr for data.table")
   }
 
-  data
+  data2 <- dplyr::mutate_if(data, is.character, toupper)
+  data2
 }
 
-#' @describeIn Capitalize Character and Unsupported Classes
 #' @export
-Capitalize.default <- function(data){
+#' @describeIn capitalize data.frame
+capitalize.data.frame <- function(data){
+  data2 <- dplyr::mutate_if(data, is.character, toupper)
+  data2
+}
+
+#' @export
+#' @describeIn capitalize default
+capitalize.default <- function(data){
   if (is.character(data)){
     toupper(data)
   } else {

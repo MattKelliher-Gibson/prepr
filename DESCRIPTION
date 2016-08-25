@@ -15,7 +15,10 @@ Imports:
     stringr,
     dplyr,
     tidyr,
-    magrittr
+    magrittr,
+    R.utils
+Suggest:
+    dtplyr
 License: GPL-3
 URL: https://github.com/MattKelliher-Gibson/prepr
 BugReports: https://github.com/MattKelliher-Gibson/prepr/issues

@@ -7,12 +7,12 @@
 TitleCase(v)
 }
 \arguments{
-\item{v}{a character vector}
+\item{v}{Character vector}
 }
 \value{
-a character vecto
+A character vector
 }
 \description{
-\code{TitleCase} capitalizes the first letter of each word and returns the other in lowercase
+\code{TitleCase} capitalizes the first letter of each word and returns the others in lowercase
 }
 

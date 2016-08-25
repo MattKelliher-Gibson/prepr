@@ -1,9 +1,9 @@
 #' Puts Vector in Title Case
 #'
-#' \code{TitleCase} capitalizes the first letter of each word and returns the other in lowercase
+#' \code{TitleCase} capitalizes the first letter of each word and returns the others in lowercase
 #'
-#' @param v a character vector
-#' @return a character vecto
+#' @param v Character vector
+#' @return A character vector
 #' @export
 TitleCase <- function(v){
   s <- strsplit(v, " ", fixed = TRUE)[[1]]

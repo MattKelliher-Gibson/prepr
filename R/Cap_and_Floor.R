@@ -2,24 +2,9 @@
 #'
 #' These function are for manipulating a data.frame for modeling
 #'
-#' @section Cap:
-#' \code{Cap} the maximum value for a \code{data.frame} column
-#' \itemize{
-#'    \item \bold{data} {a \code{data.frame} or \code{data.table}}
-#'    \item \bold{var} {the name of the variable to be capped}
-#'    \item \bold{cap} {a number that is will be the max for the column}
-#' }
-#' \bold{Returns} an object of the same class as \code{data}
-#'
-#' @section Floor:
-#' \code{Floor} sets the minimum value for a \code{data.frame} column
-#' \itemize{
-#'    \item \bold{data} {a \code{data.frame} or \code{data.table}}
-#'    \item \bold{var} {the name of the variable to be floored}
-#'    \item \bold{floor} {a number that is will be the min for the column}
-#' }
-#' \bold{Returns} an object of the same class as \code{data}
-#'
+#' @param data Numeric vector
+#' @param cap Number of max value
+#' @param floor Number of min value
 #' @section Max:
 #' \code{Max} calculates the max value less than than the \code{value}
 #' \itemize{
@@ -28,47 +13,75 @@
 #'    \item \bold{na_rm} {logical, to indicate if NAs should be removed}
 #' }
 #' \bold{Returns:} number of max value
-#' @name Cap and Floor
+#' @name Cap_and_Floor
 NULL
 
 #' @export
-#' @rdname Cap and Floor
-Cap <- function(data, var, cap) {
-  UseMethod("Cap")
+#' @rdname Cap_and_Floor
+cap <- function(data, cap) {
+  if(!is.numeric(data)){
+    stop("Not a numeric vector.")
+  }
+  to_return <- ifelse(data > cap, cap, data)
+  to_return
 }
 
 #' @export
-#' @rdname Cap and Floor
-Cap.default <- function(data, var, cap) {
-  data[[var]] <- ifelse(data[[var]] > cap, cap, data[[var]])
+#' @rdname Cap_and_Floor
+cap_all <- function(data, cap){
+  UseMethod("cap_all")
 }
 
 #' @export
-#' @rdname Cap and Floor
-Cap.data.table <- function(data, var, cap) {
-  data[get(var) > get(cap), (var) := get(cap)]
+cap_all.default <- function(data, cap){
+  to_return <- dplyr::mutate_if(data, is.numeric, prepr::cap, cap = cap)
+  to_return
 }
 
 #' @export
-#' @rdname Cap and Floor
-Floor <- function(data, var, floor) {
-  UseMethod("Floor")
+cap_all.data.table <- function(data, cap){
+  if(!R.utils::isPackageLoaded("dtplyr")){
+    stop("Please Load dtplyr for data.table")
+  }
+
+  to_return <- dplyr::mutate_if(data, is.numeric, prepr::cap, cap = cap)
+  to_return
 }
 
 #' @export
-#' @rdname Cap and Floor
-Floor.default <- function(data, var, floor) {
-  data[[var]] <- ifelse(data[[var]] < floor, floor, data[[var]])
+#' @rdname Cap_and_Floor
+floor <- function(data, floor) {
+  if(!is.numeric(data)){
+    stop("Not a numeric vector.")
+  }
+  to_return <- ifelse(data < floor, floor, data)
+  to_return
 }
 
 #' @export
-#' @rdname Cap and Floor
-Floor.data.table <- function(data, var, floor) {
-  data[get(var) < get(floor), (var) := get(floor)]
+#' @rdname Cap_and_Floor
+floor_all <- function(data, floor){
+  UseMethod("floor_all")
 }
 
 #' @export
-#' @rdname Cap and Floor
+floor_all.default <- function(data, floor){
+  to_return <- dplyr::mutate_if(data, is.numeric, prepr::floor, floor = floor)
+  to_return
+}
+
+#' @export
+floor_all.data.table <- function(data, floor){
+  if(!R.utils::isPackageLoaded("dtplyr")){
+    stop("Please Load dtplyr for data.table")
+  }
+
+  to_return <- dplyr::mutate_if(data, is.numeric, prepr::floor, floor = floor)
+  to_return
+}
+
+#' @export
+#' @rdname Cap_and_Floor
 Max <- function(data.var, value, na_rm = TRUE) {
   max(data.var[data.var < value], na.rm = na_rm)
 }
