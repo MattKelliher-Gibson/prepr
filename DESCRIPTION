@@ -11,6 +11,7 @@ Authors@R: person("Matthew", "Kelliher-Gibson", email = "mkg@mattkellihergibson.
 Depends:
     data.table (>= 1.9.6)
 Imports:
+    assertthat,
     stringi,
     stringr,
     dplyr,

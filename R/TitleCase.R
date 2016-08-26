@@ -6,7 +6,8 @@
 #' @return A character vector
 #' @export
 TitleCase <- function(v){
-  if(length(v) > 1){
+  assertthat::assert_that(is.character(v))
+  if(!assertthat::is.string(v)){
     warning("Length is greater than 1, only first element will be returned.")
   }
   s <- strsplit(v, " ", fixed = TRUE)[[1]]

@@ -13,7 +13,8 @@ test_that("right function works", {
   expect_equal(right(x, 3), c("est", "ing", "ery", "ely"))
   expect_equal(right(x, 30), c("test", "someting", "very", "closely"))
   expect_equal(right("abcdefg", 5), "cdefg")
-  expect_error(right(1:2), "Not a Character Vector")
+  expect_error(right(x[1], "a"), "chars is not a numeric or integer vector")
+  expect_error(right(1:2, 2), "vec1 is not a character vector")
 })
 
 test_that("left function works", {
@@ -27,7 +28,8 @@ test_that("left function works", {
   expect_equal(left(x, 1), c("t", "s", "v", "c"))
   expect_equal(left(x, 3), c("tes", "som", "ver", "clo"))
   expect_equal(left(x, 30), c("test", "someting", "very", "closely"))
-  expect_error(left(1:10), "Not a Character Vector")
+  expect_error(left(x[1], "a"), "chars is not a numeric or integer vector")
+  expect_error(left(1:10, 2), "vec1 is not a character vector")
 })
 
 test_that("ifna function works", {
@@ -38,4 +40,5 @@ test_that("ifna function works", {
   expect_equal(ifna(number, "monkey"), c("1", "2", "3", "4", "5", "monkey", "7", "8", "9", "10", "monkey"))
   expect_equal(ifna(text, 5), c("there", "once", "was", "a", "5", "from", "5"))
   expect_equal(ifna(c(1:10), 999), c(1:10))
+  # expect_error(ifna("a", "b"), "x is only 1 element long.")
 })

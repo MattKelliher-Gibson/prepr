@@ -12,9 +12,7 @@
 #' @name excel_functions
 #' @export
 right <- function(vec1, chars){
-  if(!is.character(vec1)){
-    stop("Not a Character Vector")
-  }
+  assertthat::assert_that(is.character(vec1), is.numeric(chars), chars > 0)
 
 	chars1 <- chars*-1
 	stringr::str_sub(vec1, start = chars1)
@@ -23,24 +21,26 @@ right <- function(vec1, chars){
 #' @rdname excel_functions
 #' @export
 left <- function(vec1, chars){
-  if(!is.character(vec1)){
-    stop("Not a Character Vector")
-  }
+  assertthat::assert_that(is.character(vec1), is.numeric(chars), chars > 0)
+
   stringr::str_sub(vec1, start = 1, end = chars)
 }
 
 #' @rdname excel_functions
 #' @export
 ifna <- function(var1, var2){
+  assertthat::assert_that(length(var1) > 1)
+
 	if(class(var1)[1] %like% "POSIX."){
 		k.class <- class(var1)
 	}
 
 	to_return <- ifelse(is.na(var1), var2, var1)
 
-	if(class(var1)[1] %like% "POSIX."){
+	if(class(var1)[1] %like% "POSIX.") {
 		class(to_return) <- k.class
 	}
 
 	to_return
 }
+

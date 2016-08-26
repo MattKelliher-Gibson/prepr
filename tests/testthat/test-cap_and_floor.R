@@ -5,7 +5,8 @@ test_that("cap function works with vector", {
   expect_equal(cap(x, 9), c(1:9, 9))
   expect_equal(cap(x, 2), c(1, rep(2, 9)))
   expect_equal(max(cap(x, 5)), 5)
-  expect_error(cap("A"), "Not a numeric vector")
+  expect_error(cap("A", 2), "data is not a numeric or integer vector")
+  expect_error(cap(x, "A"), "cap is not a numeric or integer vector")
 })
 
 test_that("floor function works with vector", {
@@ -13,7 +14,8 @@ test_that("floor function works with vector", {
   expect_equal(floor(x, 2), c(2, 2:10))
   expect_equal(floor(x, 9), c(rep(9,9), 10))
   expect_equal(min(floor(x, 5)), 5)
-  expect_error(floor("A"), "Not a numeric vector")
+  expect_error(floor("A", 2), "data is not a numeric or integer vector")
+  expect_error(floor(x, "a"), "floor is not a numeric or integer vector")
 })
 
 test_that("cap_all and floor_all only affects numerical columns", {

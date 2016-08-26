@@ -19,9 +19,7 @@ NULL
 #' @export
 #' @rdname Cap_and_Floor
 cap <- function(data, cap) {
-  if(!is.numeric(data)){
-    stop("Not a numeric vector.")
-  }
+  assertthat::assert_that(is.numeric(data), is.numeric(cap))
   to_return <- ifelse(data > cap, cap, data)
   to_return
 }
@@ -51,9 +49,7 @@ cap_all.data.table <- function(data, cap){
 #' @export
 #' @rdname Cap_and_Floor
 floor <- function(data, floor) {
-  if(!is.numeric(data)){
-    stop("Not a numeric vector.")
-  }
+  assertthat::assert_that(is.numeric(data), is.numeric(floor))
   to_return <- ifelse(data < floor, floor, data)
   to_return
 }

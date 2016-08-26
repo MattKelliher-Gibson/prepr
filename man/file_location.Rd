@@ -14,6 +14,6 @@ file_location(f.file)
  and provided file location.
 }
 \note{
-\code{f.file} must begin with a '\' and cannot use '/'
+\code{f.file} must begin with a '/' and cannot use '\'
 }
 
