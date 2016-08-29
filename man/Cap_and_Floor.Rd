@@ -7,7 +7,7 @@
 \alias{cap_all}
 \alias{floor}
 \alias{floor_all}
-\title{Functions to Cap, Floor and calulate Max values of a \code{data.frame}}
+\title{Functions to Cap, Floor and calulate Max values}
 \usage{
 cap(data, cap)
 

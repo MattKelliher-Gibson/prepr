@@ -6,17 +6,28 @@
 \usage{
 ParseWords(data, total_words = 5, name_field = NULL, var_name = "word")
 }
+\arguments{
+\item{data}{\code{data.frame}}
+
+\item{total_words}{\code{integer} total new columns}
+
+\item{name_field}{\code{string} of column with names}
+
+\item{var.name}{\code{string} for prefix to new columns names}
+}
+\value{
+\code{data.frame} of the same class as \code{data}
+}
 \description{
 \code{ParseWords} separates one character column (usually names)
  into several columns with sequential names.
  Originally designed for Parsing Name Fields.
 }
-\details{
-@param data a data.frame or data.table or tbl
- @param total_words numerical, total new columns
- @param name_field bare name of column with names
- @param var.name character, new columns name prefix
- @return data.frame/data.table/tbl of the same class
- @export
+\examples{
+ options(stringsAsFactors = FALSE)
+ x <- data.frame(text = c("Mike t Martin", "John D Rockefeller", "Daniel Tiger", "jean claude van damme"))
+
+ # Seperate into 3 columns: name1, name2, name3
+ ParseWords(x, 3, "text", "name")
 }
 

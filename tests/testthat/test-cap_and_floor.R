@@ -1,5 +1,7 @@
 context("Cap and Floor functions")
 
+options(stringsAsFactors = FALSE)
+
 test_that("cap function works with vector", {
   x <- c(1:10)
   expect_equal(cap(x, 9), c(1:9, 9))
@@ -35,3 +37,10 @@ test_that("cap_all and floor_all give data.table error", {
   expect_error(cap_all(x), "Please Load dtplyr for data.table")
   expect_error(floor_all(x), "Please Load dtplyr for data.table")
 })
+
+# test_that("data.table works", {
+#   library(dtplyr)
+#   x <- data.table(x = 1:10, y = c(rep("test", 10)), z = 5:14)
+#   x2 <- data.table(x = c(1:6, rep(6, 4)), y = c(rep("test", 10)), z = c(5, rep(6, 9)))
+#   expect_equal(cap_all(x, cap = 6), x2)
+# })

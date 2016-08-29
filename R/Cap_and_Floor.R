@@ -1,4 +1,4 @@
-#' Functions to Cap, Floor and calulate Max values of a \code{data.frame}
+#' Functions to Cap, Floor and calulate Max values
 #'
 #' These function are for manipulating a data.frame for modeling
 #'
