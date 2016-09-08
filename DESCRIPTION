@@ -8,8 +8,6 @@ Description: Functions for preparing data for analysis including removing white
     variables.
 Authors@R: person("Matthew", "Kelliher-Gibson", email = "mkg@mattkellihergibson.com",
 		role = c("aut", "cre"))
-Depends:
-    data.table (>= 1.9.6)
 Imports:
     assertthat,
     stringi,
@@ -19,6 +17,7 @@ Imports:
     magrittr,
     R.utils
 Suggest:
+    data.table (>= 1.9.6),
     dtplyr
 License: GPL-3
 URL: https://github.com/MattKelliher-Gibson/prepr

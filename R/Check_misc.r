@@ -3,7 +3,7 @@
 CheckLast <- function(x){
   assertthat::assert_that(is.character(x))
 
-  last <- c("BEN", "DA", "DAL", "DE", "DEL", "DEN", "DER", "DI", "DU", "E", "LA", "LE", "MC", "SAN", "ST", "STE", "VAN", "VANDER", "VEL", "VON", "MC", "LOS", "MAC", "LAS", "LES")
+  last <- c("BEN", "DA", "DAL", "DE", "DEL", "DEN", "DER", "DI", "DU", "LA", "LE", "MC", "SAN", "ST", "STE", "VAN", "VANDER", "VEL", "VON", "MC", "LOS", "MAC", "LAS", "LES")
 
   ifelse(toupper(x) %in% last, TRUE, FALSE)
 }
@@ -22,7 +22,7 @@ CheckPrefix <- function(x) {
   assertthat::assert_that(is.character(x))
 
   prefixes <- c("MR", "MRS", "MS", "MISS", "DR", "REV", "FR", "PR", "ATTY", "PROF", "HON", "PRES", "GOV", "OFC", "SIR", "MISTER", "MISTRESS", "REVEREND", "PASTOR", "FATHER", "DOCTOR", "ATTORNEY", "PROFESSOR", "HONORABLE", "PRESIDENT", "GOVERNOR", "OFFICER")
-  prefixes_expanded <- c("MSGR", "MONSIGNOR", "SR", "SISTER", "BR", "BROTHER", "SUPT", "SUPERINTENDENT", "REP", "REPRESENTATIVE", "SEN", "sENATOR", "AMB", "AMBASSADOR", "TREAS", "TREASURER", "SEC", "SECRETARY")
+  prefixes_expanded <- c("MSGR", "MONSIGNOR", "SR", "SISTER", "BR", "BROTHER", "SUPT", "SUPERINTENDENT", "REP", "REPRESENTATIVE", "SEN", "SENATOR", "AMB", "AMBASSADOR", "TREAS", "TREASURER", "SEC", "SECRETARY")
   prefixes_military <- c("PVT", "PRIVATE", "CPL", "CORPORAL", "SGT", "SARGENT", "ADM", "ADMINISTRATIVE", "MAJ", "MAJOR", "CAPT", "CAPTAIN", "CMDR", "COMMANDER", "LT", "LIEUTENANT", "COL", "COLONEL", "GEN", "GENERAL")
 
   ifelse(toupper(x) %in% c(prefixes, prefixes_military, prefixes_expanded), TRUE, FALSE)
@@ -39,7 +39,7 @@ CheckSuffix <- function(x) {
   suffixes_religious <- c("DD", "CSC", "CSJ", "OSB", "PE", "RGS", "SHCJ", "SJ", "SNJM", "SSMO")
   suffixes_business <- c("VP", "SVP", "CEO", "CFO", "COO", "CAO", "CAE", "CBO", "CBDO", "CCO", "CDO", "CEM", "CXO", "CHRO", "CIO", "CISO", "CKO", "CIPO", "CLO", "CMO", "CNO", "CPO", "CQO", "CTO", "CXO")
 
-  ifelse(toupper(x) %in% c(suffixes, suffixes_pro, suffixes_military, suffixes_religious), TRUE, FALSE)
+  ifelse(toupper(x) %in% c(suffixes, suffixes_pro, suffixes_military, suffixes_religious, suffixes_business), TRUE, FALSE)
 }
 
 #V. Removes Bad and/or Unwanted Characters from Names
@@ -49,31 +49,25 @@ CheckSuffix <- function(x) {
 #' @importFrom magrittr "%>%"
 #' @export
 
-clean_name <- function(data, args_list)	{
-  to_return <- data
+clean_name <- function(data, args_list, default_list = TRUE)	{
+  to_return <- toupper(data)
 
-  for(i in args_list) {
-    to_return <- to_return %>% stringr::str_replace_all(i, "")
+  if(!missing(args_list)) {
+    for(i in args_list) {
+      to_return <- to_return %>% stringr::str_replace_all(toupper(i), "")
+    }
   }
+
+	if(default_list) {
+    .list <- c("[^ -[:alnum:]]", "STORE", "AP", "NA", "ACCOUNTS", "ACCOUNTING", "DEPT",
+               "PAYABLES", "ACCTS", "RSMEANS", "MEANS", "PAYABLE", "ACCOUNT", "CUSTOMER", "NOEMAIL")
+    for(j in .list) {
+      to_return <- to_return %>% stringr::str_replace_all(toupper(j), "")
+    }
+
+	}
 	to_return <- to_return %>% gsub("^ *|(?<= ) | *$", "", perl=T, .)
   to_return
-#   data %>%
-# 	stringr::str_replace_all("[^-[:alnum:]]", " ") %>%
-# 	stringr::str_replace_all("STORE", " ") %>%
-# 	stringr::str_replace_all("A/P", " ") %>%
-# 	stringr::str_replace_all("N/A", " ") %>%
-# 	stringr::str_replace_all("ACCOUNTS", " ") %>%
-# 	stringr::str_replace_all("ACCOUNTING", " ") %>%
-# 	stringr::str_replace_all("DEPT", " ") %>%
-# 	stringr::str_replace_all("PAYABLES", " ") %>%
-# 	stringr::str_replace_all("ACCTS", " ") %>%
-# 	stringr::str_replace_all("RSMEANS", " ") %>%
-# 	stringr::str_replace_all("MEANS", " ") %>%
-# 	stringr::str_replace_all("PAYABLE", " ") %>%
-# 	stringr::str_replace_all("ACCOUNT", " ") %>%
-# 	stringr::str_replace_all("CUSTOMER", " ") %>%
-# 	stringr::str_replace_all("NOEMAIL", " ") %>%
-# 	gsub("\\d", "", perl = T, .)
 }
 
 #VI. Count the Number of Words in a Character Variable

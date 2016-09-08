@@ -4,7 +4,7 @@
 \alias{clean_name}
 \title{Removes Bad and Unwated Characters and Wrods from Names}
 \usage{
-clean_name(data, args_list)
+clean_name(data, args_list, default_list = TRUE)
 }
 \description{
 Can remove a predetermined set of bad words and/or a custom list of words or
