@@ -16,6 +16,7 @@ test_that("add_id new column is character", {
 })
 
 test_that("add_id throws errors", {
+  library(data.table)
   xx <- data.frame(x = 1:5, y = c("a", "b", "c", "d", "e"), stringsAsFactors = FALSE)
   expect_error(add_id(as.data.table(xx), "t", 2), "Please Load dtplyr for data.table")
   expect_error(add_id(c(1:10), "test", 5))

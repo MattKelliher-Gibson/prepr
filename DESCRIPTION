@@ -4,24 +4,24 @@ Title: Functions to Prepare Data for Analysis
 Version: 0.0.0.9000
 Date: 2015-08-23
 Description: Functions for preparing data for analysis including removing white
-    space, capitalizing, cleaning and parsing names fields, and caping and flooring
-    variables.
+  space, capitalizing, cleaning and parsing names fields, and caping and flooring
+  variables.
 Authors@R: person("Matthew", "Kelliher-Gibson", email = "mkg@mattkellihergibson.com",
-		role = c("aut", "cre"))
+	role = c("aut", "cre"))
 Imports:
-    assertthat,
-    stringi,
-    stringr,
-    dplyr,
-    tidyr,
-    magrittr,
-    R.utils
+  assertthat,
+  data.table (>= 1.9.6),
+  dplyr,
+  magrittr,
+  R.utils,
+  stringi,
+  stringr,
+  tidyr
 Suggest:
-    data.table (>= 1.9.6),
-    dtplyr
+  dtplyr,
+  testthat
 License: GPL-3
 URL: https://github.com/MattKelliher-Gibson/prepr
 BugReports: https://github.com/MattKelliher-Gibson/prepr/issues
 LazyData: TRUE
 RoxygenNote: 5.0.1
-Suggests: testthat

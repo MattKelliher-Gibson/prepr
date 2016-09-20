@@ -27,6 +27,7 @@ left <- function(vec1, chars){
 }
 
 #' @rdname excel_functions
+#' @importFrom data.table %like%
 #' @export
 ifna <- function(var1, var2){
   assertthat::assert_that(length(var1) > 1)
