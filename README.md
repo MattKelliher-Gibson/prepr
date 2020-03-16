@@ -3,7 +3,7 @@ An R package for preparing data for analysis
 
 ## Installation
 
-You can install modelr from github with:
+You can install prepr from github with:
 
 ```R
 # install.packages("devtools")
